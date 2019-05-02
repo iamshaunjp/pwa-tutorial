@@ -107,7 +107,24 @@
     </form>
   </div>
 
+  
+  <script src="https://www.gstatic.com/firebasejs/5.11.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.11.0/firebase-firestore.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyDuDGcpHGU-Sx1Hla3wYwZvXbjeKpHqPjA",
+      authDomain: "net-ninja-pwa.firebaseapp.com",
+      databaseURL: "https://net-ninja-pwa.firebaseio.com",
+      projectId: "net-ninja-pwa",
+      storageBucket: "net-ninja-pwa.appspot.com",
+      messagingSenderId: "1008745109838"
+    };
+    firebase.initializeApp(config);
+    const db = firebase.firestore();
+  </script>
   <script src="/js/app.js"></script>
+  <script src="/js/db.js"></script>
   <script src="/js/ui.js"></script>
 </body>
 </html>
