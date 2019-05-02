@@ -6,7 +6,8 @@ const assets = [
   '/js/ui.js',
   '/js/materialize.min.js',
   '/css/styles.css',
-  '/css/materialize.min.css'
+  '/css/materialize.min.css',
+  '/img/dish.png'
 ];
 
 // install event
