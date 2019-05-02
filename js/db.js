@@ -21,3 +21,9 @@ db.collection('recipes').onSnapshot(snapshot => {
     }
   });
 });
+
+// add new recipe
+const form = document.querySelector('form');
+form.addEventListener('submit', evt => {
+  evt.preventDefault();
+})
