@@ -50,7 +50,7 @@ self.addEventListener('activate', evt => {
   );
 });
 
-// fetch event
+// fetch events
 self.addEventListener('fetch', evt => {
   //console.log('fetch event', evt);
   // evt.respondWith(
