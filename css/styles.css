@@ -48,6 +48,13 @@ nav .sidenav-trigger{
   bottom: 0px;
   right: 0px;
 }
+
+.recipe-edit{
+  grid-area: dedit;
+  position: absolute;
+  bottom: 0px;
+  right: 15px;
+}
 .recipe-delete i{
   font-size: 18px;
 }
