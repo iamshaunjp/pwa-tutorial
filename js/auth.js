@@ -7,6 +7,7 @@ auth.onAuthStateChanged(user => {
         setupUI(user);
       }, err => console.log(err.message));
     } else {
+        console.log("No user login")
       setupUI();
       setupGuides([]);
     }
