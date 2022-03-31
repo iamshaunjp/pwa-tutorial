@@ -1,5 +1,5 @@
 // listen for auth status changes
-auth.onAuthStateChanged(user => {
+/* auth.onAuthStateChanged(user => {
     if (user) {
       console.log(user);
       db.collection('guides').onSnapshot(snapshot => {
@@ -10,7 +10,7 @@ auth.onAuthStateChanged(user => {
       setupUI();
       setupGuides([]);
     }
-  });
+  }); */
   
   // create new guide
   const createForm = document.querySelector('#create-form');
