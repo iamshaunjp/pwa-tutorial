@@ -87,3 +87,19 @@ auth.onAuthStateChanged(user => {
     });
   
   });
+
+  //Anonymously login
+
+  const Anonymously_login = document.getElementById('Anonymously-login');
+  Anonymously_login.addEventListener('click', () => {
+    firebase.auth().signInAnonymously()
+    .then(() => {
+      // Signed in..
+      console.log("Anonymously login");
+    })
+    .catch((error) => {
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      // ...
+    });
+  })
