@@ -69,9 +69,11 @@
     initApp = function() {
     firebase.auth().onAuthStateChanged(function(user) {
       if (user) {
+        console.log('already login');
+        window.location.replace("https://remarkable-hamster-be71c2.netlify.app/afterlogin.html");
         // User is signed in.
         //document.getElementById('sign-out').style.display = 'block';
-        var displayName = user.displayName;
+        /* var displayName = user.displayName;
         var email = user.email;
         var emailVerified = user.emailVerified;
         var photoURL = user.photoURL;
@@ -91,10 +93,11 @@
             accessToken: accessToken,
             providerData: providerData
           }, null, '  ');
-        });
+        }); */
       } else {
         // User is signed out. then show login ui
         // Initialize the FirebaseUI Widget using Firebase.
+        console.log(' to login');
         var ui = new firebaseui.auth.AuthUI(firebase.auth());
         // The start method will wait until the DOM is loaded.
         ui.start('#firebaseui-auth-container', uiConfig);
