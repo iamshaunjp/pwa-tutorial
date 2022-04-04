@@ -91,7 +91,7 @@ auth.onAuthStateChanged(user => {
   //Anonymously login
 
   const anonymously = document.getElementById('Anon_login');
-  console.log("anonymously");
+  //console.log("anonymously");
    anonymously.addEventListener('click', () => {
     firebase.auth().signInAnonymously()
     .then(() => {
