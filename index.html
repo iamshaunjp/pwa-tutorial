@@ -9,6 +9,7 @@
        * TODO(DEVELOPER): Paste the initialization snippet from this dialog box:
        * Firebase Console > Project Settings > Add App > Web.
        ***************************************************************************************** -->
+
     <script src="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.js"></script>
     <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.css" />
     <script type="text/javascript">
@@ -46,5 +47,26 @@
          Your app may use that space for branding, controls and other customizations.-->
     <h1>Welcome to My Awesome App</h1>
     <div id="firebaseui-auth-container"></div>
+
+    <script>
+        // Initialize Firebase
+        var config = {
+          apiKey: "AIzaSyDuJe2w5Ptc1AwM-Us-kWb2jYJuCr6UTOw",
+            authDomain: "angularfire-54a57.firebaseapp.com",
+            databaseURL: "https://angularfire-54a57.firebaseio.com",
+            projectId: "angularfire-54a57",
+            storageBucket: "angularfire-54a57.appspot.com",
+            messagingSenderId: "160774038322",
+            appId: "1:160774038322:web:5325bf8caa01ee62cfad2b"
+        };
+        firebase.initializeApp(config);
+        
+        // make auth and firestore references
+        //const auth = firebase.auth();
+        //const db = firebase.firestore();
+    
+        // update firestore settings
+        //db.settings({ timestampsInSnapshots: true });
+      </script>
   </body>
 </html>
