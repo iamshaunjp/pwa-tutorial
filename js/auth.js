@@ -92,7 +92,7 @@ auth.onAuthStateChanged(user => {
 
   const anonymously = document.getElementById('Anon_login');
   console.log("anonymously");
-  /* anonymousl.addEventListener('click', () => {
+   anonymously.addEventListener('click', () => {
     firebase.auth().signInAnonymously()
     .then(() => {
       // Signed in..
@@ -103,4 +103,4 @@ auth.onAuthStateChanged(user => {
       var errorMessage = error.message;
       // ...
     });
-  }); */
+  }); 
