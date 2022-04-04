@@ -81,6 +81,18 @@
   window.addEventListener('load', function() {
     initApp()
   });
+
+  const sign_out = document.getElementById("sign-out");
+  sign_out.addEventListener('click', () => {
+    firebase.auth().signOut().then(() => {
+      // Sign-out successful./
+      console.log('Sign out.');
+
+    }).catch((error) => {
+      // An error happened.
+      console.log(error);
+    });
+  });
 </script>
 
   </body>
