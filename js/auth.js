@@ -102,4 +102,4 @@ auth.onAuthStateChanged(user => {
       var errorMessage = error.message;
       // ...
     });
-  })
+  });
