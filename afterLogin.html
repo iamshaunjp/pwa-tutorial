@@ -9,52 +9,76 @@
        * TODO(DEVELOPER): Paste the initialization snippet from:
        * Firebase Console > Overview > Add Firebase to your web app. *
        ***************************************************************************************** -->
-    <script type="text/javascript">
-      initApp = function() {
-        firebase.auth().onAuthStateChanged(function(user) {
-          if (user) {
-            // User is signed in.
-            var displayName = user.displayName;
-            var email = user.email;
-            var emailVerified = user.emailVerified;
-            var photoURL = user.photoURL;
-            var uid = user.uid;
-            var phoneNumber = user.phoneNumber;
-            var providerData = user.providerData;
-            user.getIdToken().then(function(accessToken) {
-              document.getElementById('sign-in-status').textContent = 'Signed in';
-              document.getElementById('sign-in').textContent = 'Sign out';
-              document.getElementById('account-details').textContent = JSON.stringify({
-                displayName: displayName,
-                email: email,
-                emailVerified: emailVerified,
-                phoneNumber: phoneNumber,
-                photoURL: photoURL,
-                uid: uid,
-                accessToken: accessToken,
-                providerData: providerData
-              }, null, '  ');
-            });
-          } else {
-            // User is signed out.
-            document.getElementById('sign-in-status').textContent = 'Signed out';
-            document.getElementById('sign-in').textContent = 'Sign in';
-            document.getElementById('account-details').textContent = 'null';
-          }
-        }, function(error) {
-          console.log(error);
-        });
-      };
-
-      window.addEventListener('load', function() {
-        initApp()
-      });
-    </script>
+  
   </head>
   <body>
     <h1>Welcome to My Awesome App</h1>
     <div id="sign-in-status"></div>
     <div id="sign-in"></div>
     <pre id="account-details"></pre>
+
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyDuJe2w5Ptc1AwM-Us-kWb2jYJuCr6UTOw",
+          authDomain: "angularfire-54a57.firebaseapp.com",
+          databaseURL: "https://angularfire-54a57.firebaseio.com",
+          projectId: "angularfire-54a57",
+          storageBucket: "angularfire-54a57.appspot.com",
+          messagingSenderId: "160774038322",
+          appId: "1:160774038322:web:5325bf8caa01ee62cfad2b"
+      };
+      firebase.initializeApp(config);
+      
+      // make auth and firestore references
+      //const auth = firebase.auth();
+      //const db = firebase.firestore();
+  
+      // update firestore settings
+      //db.settings({ timestampsInSnapshots: true });
+    </script>
+
+<script type="text/javascript">
+  initApp = function() {
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        // User is signed in.
+        var displayName = user.displayName;
+        var email = user.email;
+        var emailVerified = user.emailVerified;
+        var photoURL = user.photoURL;
+        var uid = user.uid;
+        var phoneNumber = user.phoneNumber;
+        var providerData = user.providerData;
+        user.getIdToken().then(function(accessToken) {
+          document.getElementById('sign-in-status').textContent = 'Signed in';
+          document.getElementById('sign-in').textContent = 'Sign out';
+          document.getElementById('account-details').textContent = JSON.stringify({
+            displayName: displayName,
+            email: email,
+            emailVerified: emailVerified,
+            phoneNumber: phoneNumber,
+            photoURL: photoURL,
+            uid: uid,
+            accessToken: accessToken,
+            providerData: providerData
+          }, null, '  ');
+        });
+      } else {
+        // User is signed out.
+        document.getElementById('sign-in-status').textContent = 'Signed out';
+        document.getElementById('sign-in').textContent = 'Sign in';
+        document.getElementById('account-details').textContent = 'null';
+      }
+    }, function(error) {
+      console.log(error);
+    });
+  };
+
+  window.addEventListener('load', function() {
+    initApp()
+  });
+</script>
+
   </body>
 </html>
