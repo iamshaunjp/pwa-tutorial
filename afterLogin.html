@@ -44,7 +44,7 @@
     firebase.auth().onAuthStateChanged(function(user) {
       if (user) {
         // User is signed in.
-        document.getElementById('sign-out').style.display = 'block';
+        //document.getElementById('sign-out').style.display = 'block';
         var displayName = user.displayName;
         var email = user.email;
         var emailVerified = user.emailVerified;
@@ -70,7 +70,7 @@
         // User is signed out.
         document.getElementById('sign-in-status').textContent = 'Signed out';
         document.getElementById('sign-in').textContent = 'Sign in';
-        document.getElementById('sign-out').style.display = 'null';
+        //document.getElementById('sign-out').style.display = 'null';
         document.getElementById('account-details').textContent = 'null';
       }
     }, function(error) {
