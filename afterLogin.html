@@ -142,7 +142,7 @@
 
           } else {
             // User is signed out.
-            window.location.replace("https://quiet-genie-ff0807.netlify.app/");
+            window.location.replace("https://majestic-sable-521f65.netlify.app");
            /*  document.getElementById('sign-in-status').textContent = 'Signed out';
             document.getElementById('sign-in').textContent = 'Sign in';
             //document.getElementById('sign-out').style.display = 'null';
@@ -161,8 +161,8 @@
       sign_out.addEventListener('click', () => {
         firebase.auth().signOut().then(() => {
           // Sign-out successful./
-          console.log('Sign out.');
-          window.location.replace("https://quiet-genie-ff0807.netlify.app/");
+          console.log('Sign out.'+window.location.origin);
+          window.location.replace("https://majestic-sable-521f65.netlify.app");
 
         }).catch((error) => {
           // An error happened.
