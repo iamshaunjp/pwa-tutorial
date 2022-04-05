@@ -68,7 +68,7 @@
         });
       } else {
         // User is signed out.
-        window.location.replace("https://remarkable-hamster-be71c2.netlify.app/");
+        window.location.replace("https://quiet-genie-ff0807.netlify.app/");
         document.getElementById('sign-in-status').textContent = 'Signed out';
         document.getElementById('sign-in').textContent = 'Sign in';
         //document.getElementById('sign-out').style.display = 'null';
@@ -88,7 +88,7 @@
     firebase.auth().signOut().then(() => {
       // Sign-out successful./
       console.log('Sign out.');
-      window.location.replace("https://remarkable-hamster-be71c2.netlify.app/");
+      window.location.replace("https://quiet-genie-ff0807.netlify.app/");
 
     }).catch((error) => {
       // An error happened.
