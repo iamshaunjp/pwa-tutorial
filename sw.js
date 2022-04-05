@@ -10,4 +10,4 @@ importScripts(
   
   workbox.recipes.imageCache();
   
-  //workbox.recipes.offlineFallback(); 
+  workbox.recipes.offlineFallback(); 
