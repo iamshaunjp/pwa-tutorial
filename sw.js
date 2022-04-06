@@ -44,12 +44,26 @@ self.addEventListener('install', evt => {
 // activate event
 self.addEventListener('activate', evt => {
   console.log('service worker activated');
-  evt.waitUntil(
+  /* evt.waitUntil(
     caches.keys().then(keys => {
       //console.log(keys);
       return Promise.all(keys
         .filter(key => key !== staticCacheName && key !== dynamicCacheName)
         .map(key => caches.delete(key))
+      );
+    })
+  ); */
+
+  event.waitUntil(
+    caches.keys().then(function(cacheNames) {
+      return Promise.all(
+        cacheNames.filter(function(cacheName) {
+          // Return true if you want to remove this cache,
+          // but remember that caches are shared across
+          // the whole origin
+        }).map(function(cacheName) {
+          return caches.delete(cacheName);
+        })
       );
     })
   );
