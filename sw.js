@@ -30,7 +30,7 @@ self.addEventListener('install', evt => {
   // if cached, delete all first
   /* limitCacheSize(dynamicCacheName, 0);
   limitCacheSize(staticCacheName, 0); */
-  event.waitUntil(
+  /* event.waitUntil(
     caches.keys().then(function(cacheNames) {
       return Promise.all(
         cacheNames.filter(function(cacheName) {
@@ -42,7 +42,7 @@ self.addEventListener('install', evt => {
         })
       );
     })
-  );
+  ); */
   
   //console.log('service worker installed');
 
@@ -57,7 +57,7 @@ self.addEventListener('install', evt => {
 // activate event
 self.addEventListener('activate', evt => {
   console.log('service worker activated');
-  /* evt.waitUntil(
+  evt.waitUntil(
     caches.keys().then(keys => {
       //console.log(keys);
       return Promise.all(keys
@@ -65,7 +65,7 @@ self.addEventListener('activate', evt => {
         .map(key => caches.delete(key))
       );
     })
-  ); */
+  );
 
   
 });
