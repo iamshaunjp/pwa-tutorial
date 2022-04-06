@@ -27,7 +27,12 @@ const limitCacheSize = (name, size) => {
 
 // install event
 self.addEventListener('install', evt => {
+  // if cached, delete all first
+  limitCacheSize(dynamicCacheName, 0);
+  limitCacheSize(staticCacheName, 0);
+
   //console.log('service worker installed');
+
   evt.waitUntil(
     caches.open(staticCacheName).then((cache) => {
       console.log('caching shell assets');
