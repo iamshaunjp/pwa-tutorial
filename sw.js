@@ -28,9 +28,9 @@ const limitCacheSize = (name, size) => {
 // install event
 self.addEventListener('install', evt => {
   // if cached, delete all first
-  limitCacheSize(dynamicCacheName, 0);
-  limitCacheSize(staticCacheName, 0);
-  console.log('delete caches');
+  /* limitCacheSize(dynamicCacheName, 0);
+  limitCacheSize(staticCacheName, 0); */
+  
   //console.log('service worker installed');
 
   evt.waitUntil(
@@ -43,7 +43,7 @@ self.addEventListener('install', evt => {
 
 // activate event
 self.addEventListener('activate', evt => {
-  //console.log('service worker activated');
+  console.log('service worker activated');
   evt.waitUntil(
     caches.keys().then(keys => {
       //console.log(keys);
