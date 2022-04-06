@@ -1,4 +1,4 @@
-var CACHE_NAME = 'my-web-app-version-v09';
+var CACHE_NAME = 'my-web-app-version-v19';
 
 self.addEventListener('install', event => {
     event.waitUntil(
