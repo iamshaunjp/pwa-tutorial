@@ -6,7 +6,7 @@ self.addEventListener('install', event => {
          .then(cache => {
             return cache.addAll([
                 './',
-                './index.php',
+                './index.html',
                 './ServiceWorkerUpdateListener.min.js'
             ]);
          })
