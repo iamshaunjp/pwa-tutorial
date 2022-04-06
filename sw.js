@@ -38,7 +38,7 @@ self.addEventListener('install', evt => {
           // but remember that caches are shared across
           // the whole origin
         }).map(function(cacheName) {
-          console.log('delete caches');
+          console.log('delete caches:'+cacheName);
           return caches.delete(cacheName);
         })
       );
