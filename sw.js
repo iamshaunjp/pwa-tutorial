@@ -36,13 +36,13 @@ self.addEventListener('install', evt => {
       console.log('delete ...');
       return Promise.all(
         cacheNames.filter(function(cacheName) {
-          console.log('delete caches:'+cacheName);
-          limitCacheSize(cacheName, 1);
+         // console.log('delete caches:'+cacheName);
+         // limitCacheSize(cacheName, 1);
           // Return true if you want to remove this cache,
           // but remember that caches are shared across
           // the whole origin
         }).map(function(cacheName) {
-         // console.log('delete caches:'+cacheName);
+          console.log('delete caches:'+cacheName);
           return caches.delete(cacheName);
         })
       );
