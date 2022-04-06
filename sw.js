@@ -31,8 +31,9 @@ self.addEventListener('install', evt => {
   /* limitCacheSize(dynamicCacheName, 0);
   limitCacheSize(staticCacheName, 0); */
   evt.waitUntil(
-    console.log('delete ...');
+    
     caches.keys().then(function(cacheNames) {
+      console.log('delete ...');
       return Promise.all(
         cacheNames.filter(function(cacheName) {
           // Return true if you want to remove this cache,
