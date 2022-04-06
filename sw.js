@@ -30,7 +30,7 @@ self.addEventListener('install', evt => {
   // if cached, delete all first
   /* limitCacheSize(dynamicCacheName, 0);
   limitCacheSize(staticCacheName, 0); */
-  event.waitUntil(
+  evt.waitUntil(
     caches.keys().then(function(cacheNames) {
       return Promise.all(
         cacheNames.filter(function(cacheName) {
