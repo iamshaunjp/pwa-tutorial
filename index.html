@@ -80,10 +80,17 @@
 
  function invokeServiceWorkerUpdateFlow(registration) {
     // TODO implement your own UI notification element
-    notification.show("New version of the app is available. Refresh now?");
-    notification.addEventListener('click', () => {
+    //notification.show("New version of the app is available. Refresh now?");
+    document.getElementById('update-banner').dataset.state = 'updateavailable';
+    document.querySelector('#update-banner .headline').innerHTML = 'Update available';
+    document.querySelector('#update-banner .subhead').innerHTML = 'Click here to update the app to the latest version';
+    document.getElementById('update-banner').addEventListener('click', () => {
         if (registration.waiting) {
             // let waiting Service Worker know it should became active
+           /*  document.getElementById('update-banner').dataset.state = 'updateavailable';
+            document.querySelector('#update-banner .headline').innerHTML = 'Update available';
+            document.querySelector('#update-banner .subhead').innerHTML = 'Click here to update the app to the latest version'; */
+            //document.getElementById('update-banner').addEventListener('click', clickEvent => listener.skipWaiting(waitingevent.detail.serviceWorker));
             registration.waiting.postMessage('SKIP_WAITING')
         }
     })
