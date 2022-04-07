@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="/manifest.json">
+    <title>My Web Application</title>
+</head>
+<style>
+    body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+        background: #f2f1f5;
+    }
+    
+    #update-banner {
+        color: #FFFFFF;
+        background: #2A263C;
+    }
+    
+    #update-banner .content {
+        margin: 0 auto;
+        max-width: 980px;
+        padding: 20px;
+    }
+    
+    #update-banner .headline {
+        font-weight: 800;
+        font-size: 15px;
+    }
+    
+    #update-banner .subhead {
+        font-size: 13px;
+    }
+    
+    #update-banner[data-state="updateavailable"] {
+        cursor: pointer;
+        background: #26AE60;
+    }
+    </style>
+<body>
+
+<div id="update-banner" data-state="noupdate">
+    <div class="content">
+        <div class="headline">No update available</div>
+        <div class="subhead">Waiting for an update to become available</div>
+    </div>
+</div>
+
+
+
+<script src="ServiceWorkerUpdateListener.min.js"></script>
+<script>
+// Check for Service Worker support
+if ('serviceWorker' in navigator) {
+
+    // Create a new ServiceWorkerUpdateListener
+    var listener = new ServiceWorkerUpdateListener();
+
+    // Called whenever an update has been found and is installing
+    listener.onupdateinstalling = installingevent => console.log('Update is installing.');
+
+    // Called whenever an update is done installing and is waiting
+    listener.onupdatewaiting = waitingevent => {
+        document.getElementById('update-banner').dataset.state = 'updateavailable';
+        document.querySelector('#update-banner .headline').innerHTML = 'Update available';
+        document.querySelector('#update-banner .subhead').innerHTML = 'Click here to update the app to the latest version';
+        document.getElementById('update-banner').addEventListener('click', clickEvent => listener.skipWaiting(waitingevent.detail.serviceWorker));
+    }
+
+    // Called whenever an update is activated
+    listener.onupdateready = event => window.location.reload();
+
+    // Register the service worker and add it to the listener
+    navigator.serviceWorker.register('service-worker.js')
+    .then(registration => listener.addRegistration(registration))
+
+}
+
+
+</script>
+
+</body>
+</html>
