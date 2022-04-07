@@ -1,4 +1,4 @@
-var CACHE_NAME = 'my-web-app-version-v6';
+var CACHE_NAME = 'my-web-app-version-v7';
 
 self.addEventListener('install', event => {
     event.waitUntil(
@@ -47,6 +47,8 @@ self.addEventListener('fetch', event => {
 });
 
 self.addEventListener('message', event => {
+    console.log(event.data);
     if (event.data === 'skipWaiting') return skipWaiting();
+
 });
 
