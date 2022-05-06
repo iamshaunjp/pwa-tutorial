@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Firebase Store and auth PWA </title>
+    <!-- <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-store-compat.js"></script> -->
+    <!-- *******************************************************************************************
+       * TODO(DEVELOPER): Paste the initialization snippet from:
+       * Firebase Console > Overview > Add Firebase to your web app. *
+       ***************************************************************************************** -->
+    <title>Firebase PWA</title>
+    <!-- materialize icons, css & js -->
+    <link type="text/css" href="/css/materialize.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" href="/css/styles.css" rel="stylesheet">
+    <script type="text/javascript" src="/js/materialize.min.js"></script>
+    <link rel="manifest" href="/manifest.json">
+    <!-- ios support -->
+    <link rel="apple-touch-icon" href="/img/icons/icon-96x96.png">
+    <meta name="apple-mobile-web-app-status-bar" content="#FFE1C4">
+    <meta name="theme-color" content="#FFE1C4">
+  
+  </head>
+  <body class="grey lighten-4">
+      <!-- top nav -->
+      <nav class="z-depth-0">
+        <div class="nav-wrapper container">
+          <a href="/">Firebase PWA</a>
+          <span class="right grey-text text-darken-1">
+            <i class="material-icons sidenav-trigger" data-target="side-menu">menu</i>
+          </span>
+        </div>
+      </nav>
+  
+      <!-- side nav -->
+      <ul id="side-menu" class="sidenav side-menu">
+        <li><a class="subheader">Firebase PWA</a></li>
+        <li><a href="" class="waves-effect" id="sign-out">Sign out</a></li>
+        <li><a href="/" class="waves-effect">Home</a></li>
+        <li><a href="/pages/about.html" class="waves-effect">About</a></li>
+        <li><div class="divider"></div></li>
+        <li><a href="/pages/contact.html" class="waves-effect">
+          <i class="material-icons">mail_outline</i>Contact</a>
+        </li>
+      </ul>
+  
+      <!-- recipes -->
+      <div class="recipes container grey-text text-darken-1">
+        
+      </div>
+  
+      <div class="center">
+        <a class="btn-floating btn-small btn-large add-btn sidenav-trigger" data-target="side-form">
+          <i class="material-icons">add</i>
+        </a>
+      </div>
+  
+      <!-- add recipe side nav -->
+      <div id="side-form" class="sidenav side-form">
+        <form class="add-recipe container section">
+          <h6 >New Recipe</h6>
+          <div class="divider"></div>
+          <div class="input-field">
+            <input placeholder="e.g. Ninja soup" id="title" type="text" class="validate">
+            <label for="title">Recipe Title</label>
+          </div>
+          <div class="input-field">
+            <input placeholder="e.g. Tofu, mushroom, garlic" id="ingredients" type="text" class="validate">
+            <label for="ingredients">Ingredients</label>
+          </div>
+          <div class="input-field center">
+            <button class="btn-small">Add</button>
+          </div>
+        </form>
+      </div>
+   
+
+    
+    <!-- <div id="sign-in-status"></div>
+    <div id="sign-in"></div>
+    
+    <pre id="account-details"></pre> -->
+    <!-- <button class="btn yellow darken-2 z-depth-0" id="sign-out">Sign Out</button> -->
+    <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-firestore.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyDuJe2w5Ptc1AwM-Us-kWb2jYJuCr6UTOw",
+          authDomain: "angularfire-54a57.firebaseapp.com",
+          databaseURL: "https://angularfire-54a57.firebaseio.com",
+          projectId: "angularfire-54a57",
+          storageBucket: "angularfire-54a57.appspot.com",
+          messagingSenderId: "160774038322",
+          appId: "1:160774038322:web:5325bf8caa01ee62cfad2b"
+      };
+      firebase.initializeApp(config);
+      
+      // make auth and firestore references
+      //const auth = firebase.auth();
+      const db = firebase.firestore();
+  
+      // update firestore settings
+      //db.settings({ timestampsInSnapshots: true });
+    </script>
+    <script src="/js/app.js"></script>
+    <script src="/js/db.js"></script>
+    <script src="/js/ui.js"></script>
+
+    <script type="text/javascript">
+      initApp = function() {
+        firebase.auth().onAuthStateChanged(function(user) {
+          if (user) {
+          
+            // User is signed in.
+            //document.getElementById('sign-out').style.display = 'block';
+            /* var displayName = user.displayName;
+            var email = user.email;
+            var emailVerified = user.emailVerified;
+            var photoURL = user.photoURL;
+            var uid = user.uid;
+            var phoneNumber = user.phoneNumber;
+            var providerData = user.providerData;
+            user.getIdToken().then(function(accessToken) {
+              document.getElementById('sign-in-status').textContent = 'Signed in';
+              document.getElementById('sign-in').textContent = 'Sign out';
+              document.getElementById('account-details').textContent = JSON.stringify({
+                displayName: displayName,
+                email: email,
+                emailVerified: emailVerified,
+                phoneNumber: phoneNumber,
+                photoURL: photoURL,
+                uid: uid,
+                accessToken: accessToken,
+                providerData: providerData
+              }, null, '  ');
+            }); */
+
+
+          } else {
+            // User is signed out.
+            window.location.replace("https://majestic-sable-521f65.netlify.app");
+           /*  document.getElementById('sign-in-status').textContent = 'Signed out';
+            document.getElementById('sign-in').textContent = 'Sign in';
+            //document.getElementById('sign-out').style.display = 'null';
+            document.getElementById('account-details').textContent = 'null'; */
+          }
+        }, function(error) {
+          console.log(error);
+        });
+      };
+
+      window.addEventListener('load', function() {
+        initApp()
+      });
+
+      const sign_out = document.getElementById("sign-out");
+      sign_out.addEventListener('click', () => {
+        firebase.auth().signOut().then(() => {
+          // Sign-out successful./
+          console.log('Sign out.'+window.location.origin);
+          window.location.replace("https://majestic-sable-521f65.netlify.app");
+
+        }).catch((error) => {
+          // An error happened.
+          console.log(error);
+        });
+      });
+    </script>
+
+    
+
+  </body>
+</html>

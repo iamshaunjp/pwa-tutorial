@@ -1,5 +1,5 @@
-const staticCacheName = 'site-static-v3';
-const dynamicCacheName = 'site-dynamic-v3';
+const staticCacheName = 'site-static-v7';
+const dynamicCacheName = 'site-dynamic-v7';
 const assets = [
   '/',
   '/index.html',
@@ -27,7 +27,30 @@ const limitCacheSize = (name, size) => {
 
 // install event
 self.addEventListener('install', evt => {
-  //console.log('service worker installed');
+  // if cached, delete all first
+  /* limitCacheSize(dynamicCacheName, 0);
+  limitCacheSize(staticCacheName, 0); */
+  evt.waitUntil(
+    
+    caches.keys().then(function(cacheNames) {
+      console.log('delete ...');
+      return Promise.all(
+        cacheNames.filter(function(cacheName) {
+          console.log('delete caches:'+cacheName);
+          limitCacheSize(cacheName, 0);
+          // Return true if you want to remove this cache,
+          // but remember that caches are shared across
+          // the whole origin
+        }).map(function(cacheName) {
+          console.log('delete caches:'+cacheName);
+          return caches.delete(cacheName);
+        })
+      );
+    })
+  );
+  
+  console.log('service worker installed');
+
   evt.waitUntil(
     caches.open(staticCacheName).then((cache) => {
       console.log('caching shell assets');
@@ -38,7 +61,7 @@ self.addEventListener('install', evt => {
 
 // activate event
 self.addEventListener('activate', evt => {
-  //console.log('service worker activated');
+  console.log('service worker activated');
   evt.waitUntil(
     caches.keys().then(keys => {
       //console.log(keys);
@@ -48,6 +71,8 @@ self.addEventListener('activate', evt => {
       );
     })
   );
+
+  
 });
 
 // fetch events

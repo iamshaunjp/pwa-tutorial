@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="/manifest.json">
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css" />
+    <title>My Web Application</title>
+</head>
+<style>
+    body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+        background: #f2f1f5;
+    }
+    
+    #update-banner {
+        color: #FFFFFF;
+        background: #2A263C;
+    }
+    
+    #update-banner .content {
+        margin: 0 auto;
+        max-width: 980px;
+        padding: 20px;
+    }
+    
+    #update-banner .headline {
+        font-weight: 800;
+        font-size: 15px;
+    }
+    
+    #update-banner .subhead {
+        font-size: 13px;
+    }
+    
+    #update-banner[data-state="updateavailable"] {
+        cursor: pointer;
+        background: #26AE60;
+    }
+    </style>
+<body>
+
+<div id="update-banner" data-state="noupdate">
+    <div class="content">
+        <div class="headline">No update available</div>
+        <div class="subhead">Waiting for an update to become available</div>
+    </div>
+</div>
+
+
+
+<!-- <script src="ServiceWorkerUpdateListener.min.js"></script> -->
+<script>
+    // make the whole serviceworker process into a promise so later on we can
+    // listen to it and in case new content is available a toast will be shown
+    window.isUpdateAvailable = new Promise(function(resolve, reject) {
+        // lazy way of disabling service workers while developing
+        if ('serviceWorker' in navigator && ['localhost', '127'].indexOf(location.hostname) === -1) {
+            // register service worker file
+            navigator.serviceWorker.register('service-worker.js')
+                .then(reg => {
+                    reg.onupdatefound = () => {
+                        const installingWorker = reg.installing;
+                        installingWorker.onstatechange = () => {
+                            switch (installingWorker.state) {
+                                case 'installed':
+                                    if (navigator.serviceWorker.controller) {
+                                        // new update available
+                                        resolve(true);
+                                    } else {
+                                        // no update available
+                                        resolve(false);
+                                    }
+                                    break;
+                            }
+                        };
+                    };
+                })
+                .catch(err => console.error('[SW ERROR]', err));
+        }
+    });
+
+
+    // listen to the service worker promise in index.html to see if there has been a new update.
+// condition: the service-worker.js needs to have some kind of change - e.g. increment CACHE_VERSION.
+window['isUpdateAvailable']
+	.then(isAvailable => {
+		if (isAvailable) {
+			/* 
+             */
+            document.getElementById('update-banner').dataset.state = 'updateavailable1';
+            document.querySelector('#update-banner .headline').innerHTML = 'Update available';
+            document.querySelector('#update-banner .subhead').innerHTML = 'Click here to update the app to the latest version';
+        }
+	});
+// Check for Service Worker support
+/* if ('serviceWorker' in navigator) {
+
+    // Create a new ServiceWorkerUpdateListener
+    var listener = new ServiceWorkerUpdateListener();
+
+    // Called whenever an update has been found and is installing
+    listener.onupdateinstalling = installingevent => console.log('Update is installing.');
+
+    // Called whenever an update is done installing and is waiting
+    listener.onupdatewaiting = waitingevent => {
+        document.getElementById('update-banner').dataset.state = 'updateavailable';
+        document.querySelector('#update-banner .headline').innerHTML = 'Update available';
+        document.querySelector('#update-banner .subhead').innerHTML = 'Click here to update the app to the latest version';
+        document.getElementById('update-banner').addEventListener('click', clickEvent => listener.skipWaiting(waitingevent.detail.serviceWorker));
+    }
+
+    // Called whenever an update is activated
+    listener.onupdateready = event => window.location.reload();
+
+    // Register the service worker and add it to the listener
+    navigator.serviceWorker.register('service-worker.js')
+    .then(registration => listener.addRegistration(registration)) 
+
+}*/
+
+
+</script>
+
+</body>
+</html>
